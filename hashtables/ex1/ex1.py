@@ -4,16 +4,28 @@ from hashtables import (HashTable,
                         hash_table_remove,
                         hash_table_retrieve,
                         hash_table_resize)
-
-
 def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(16)
 
     """
     YOUR CODE HERE
     """
+    for i in range(0, len(weights)):
+      hash_table_insert(ht, weights[i], i)
 
-    return None
+    answer = None
+    for j in range(0, len(weights)):
+      compWeight = hash_table_retrieve(ht, limit - weights[j])
+      if compWeight:
+        if compWeight > j:
+          answer = (compWeight, j)
+        else:
+          answer = (j, compWeight)
+        break
+
+    return answer
+
+    
 
 
 def print_answer(answer):
